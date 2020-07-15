@@ -1,11 +1,84 @@
 1D DP
+
+
 1.FIBONACCI USING MEMO
 
-2.2 STAIRS PROBLEM
+#include<bits/stdc++.h>
+using namespace std;
+#define modulo 1000000007
+#define max 1001
 
+int dp[max];
+
+int print(int n)
+{
+ if(dp[n]==-1)
+  {
+   if(n<=1)
+   dp[n]=n;
+   else
+   dp[n]=print(n-1)+print(n-2);
+  }
+  return dp[n]%modulo;
+}
+
+int main()
+{
+ int  T;
+ cin>>T;
+ while(T--)
+ {
+  int N;
+  cin>>N;
+  for(int i=0;i<max;i++)
+    dp[i]=-1;
+  cout<<print(N)<<endl;
+ }
+}
+
+TC:O(n)
+SC: O(n)
+
+2.2 STAIRS PROBLEM
 3.3 STAIRS PROBLEM
 
+int climbStairs(int n) {
+    long int dp[n+1];
+        dp[0]=1;
+        dp[1]=1;
+        for(int i=2;i<n+1;i++)
+            dp[i]=dp[i-1]+dp[i-2];
+        return dp[n];
+    }
+    
+ TC:O(n)
+ SC:O(n)
+ 
+
 4.HOUSE THIEVES / HOUSE ROBBER
+
+int rob(vector<int>& nums) {
+      int n = nums.size();
+        if(n==0)
+            return 0;
+      int value1=nums[0];
+      if(n==1)
+          return value1;
+      int value2=max(nums[0],nums[1]);
+       if(n==2)
+            return value2;
+       int max_val;
+       for(int i=2;i<n;i++)
+       {
+         max_val=max(value1+nums[i],value2);
+         value1=value2;
+         value2=max_val;
+       }
+        return max_val;
+    }
+    
+TC: O(n)
+SC: O(1)
 
 5.COIN CHANGE - 1
 
